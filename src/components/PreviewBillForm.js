@@ -2,7 +2,7 @@ import React from "react";
 
 const PreviewBillForm = ({ formData, componentRef }) => {
   return (
-    <div className="h-full w-full " ref={componentRef}>
+    <div className="h-full w-full flex justify-center items-center" ref={componentRef}>
       <div className=" bg-white border-2 my-5 border-gray-400  rounded-lg shadow-lg px-8 py-10 max-w-xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div className="text-gray-700 text-2xl text-center w-full font-semibold ">
@@ -19,8 +19,8 @@ const PreviewBillForm = ({ formData, componentRef }) => {
           </div>
           <div className="text-gray-700">
             <div className="font-bold text-xl mb-2">INVOICE</div>
-            <div className="text-sm">Bill No: 1</div>
-            <div className="text-sm">Date:{formData.date || "00/00/0000"}</div>
+            <div className="text-sm">Bill No: {formData?.billNo || "-"}</div>
+            <div className="text-sm">Date: {formData?.date || "00/00/0000"}</div>
           </div>
         </div>
         <div className="border-b-2 border-gray-300 pb-5 mb-2">
@@ -33,38 +33,38 @@ const PreviewBillForm = ({ formData, componentRef }) => {
                 <div className="flex gap-1 pb-2 w-full">
                   <div className="w-1/4 pl-2 font-semibold">Name</div>:
                   <div className="w-3/4 pr-2 border-b  border-gray-400">
-                    {formData.name || "Enter Name Here"}
+                    {formData?.name || "Enter Name Here"}
                   </div>
                 </div>
                 <div className="flex gap-1 pb-2 w-full">
                   <div className="w-1/4 pl-2 font-semibold">Address</div>:
                   <div className="w-3/4 pr-2 border-b  border-gray-400">
-                    {formData.address || "Enter Address Here"}
+                    {formData?.address || "Enter Address Here"}
                   </div>
                 </div>
                 <div className="flex gap-1 pb-2 w-full">
                   <div className="w-1/4 pl-2 font-semibold">Phone</div>:
                   <div className="w-3/4 pr-2 border-b  border-gray-400">
-                    {formData.phone || "Enter Phone Here"}
+                    {formData?.phone || "Enter Phone Here"}
                   </div>
                 </div>
                 <div className="flex gap-1 pb-2 w-full">
                   <div className="flex gap-1 pb-2 w-full">
                     <div className="md:w-1/4 pl-2 font-semibold">City</div>:
                     <div className="md:w-3/4 pr-2 border-b  border-gray-400">
-                      {formData.city || "City"}
+                      {formData?.city || "City"}
                     </div>
                   </div>
                   <div className="flex gap-1 pb-2 w-full">
                     <div className="md:w-1/4 pl-2 font-semibold">State</div>:
                     <div className="md:w-3/4 pr-2 border-b  border-gray-400">
-                      {formData.state || "State"}
+                       { formData?.state || "State"}
                     </div>
                   </div>
                   <div className="flex gap-1 pb-2 w-full">
                     <div className="md:w-1/4 pl-2 font-semibold">Zip</div>:
                     <div className="md:w-3/4 pr-2 border-b  border-gray-400">
-                      {formData.zip || "Zip"}
+                      {formData?.zip || "Zip"}
                     </div>
                   </div>
                 </div>
@@ -84,12 +84,12 @@ const PreviewBillForm = ({ formData, componentRef }) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="py-4 text-gray-700">1.</td>
-              <td className="py-4 text-gray-700">
-                ENERGY CONSULTING CHARGE MONTH OF {formData.month || "..."}
+            <tr className="w-full">
+              <td className="py-4 text-gray-700 w-1/6">1.</td>
+              <td className="py-4 text-gray-700 text-wrap w-2/3 uppercase">
+              Maintenance of energy goods items month of {formData?.month || "..."}
               </td>
-              <td className="py-4 text-gray-700">₹ {formData.amount || "00.00"}</td>
+              <td className="py-4 text-gray-700 w-1/6">₹ {formData?.amount || "00.00"}</td>
             </tr>
           </tbody>
         </table>
@@ -103,7 +103,7 @@ const PreviewBillForm = ({ formData, componentRef }) => {
               <div className="flex flex-col gap-2 pb-2 w-full">
                 <div className=" pl-2 font-semibold">Payment Method</div>
                 <div className=" pr-2 border text-center rounded-xl border-gray-400">
-                  {formData.payment_method || "Cash"}
+                  {formData?.payment_method || "Cash"}
                 </div>
               </div>
             </div>
@@ -111,12 +111,12 @@ const PreviewBillForm = ({ formData, componentRef }) => {
             <div>
               <div className="flex justify-end mb-8">
                 <div className="text-gray-700 mr-2">Subtotal:</div>
-                <div className="text-gray-700">₹ {formData.amount || "00.00"}</div>
+                <div className="text-gray-700">₹ {formData?.amount || "00.00"}</div>
               </div>
               <div className="flex justify-end mb-8">
                 <div className="text-gray-700 mr-2">Total:</div>
                 <div className="text-gray-700 font-bold text-xl">
-                  ₹ {formData.amount || "00.00"}
+                  ₹ {formData?.amount || "00.00"}
                 </div>
               </div>
             </div>

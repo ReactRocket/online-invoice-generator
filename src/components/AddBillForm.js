@@ -3,7 +3,6 @@ import React from "react";
 const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const invoice_kiran_arr_str = localStorage.getItem("invoice_kiran");
     let invoice_kiran_arr = [];
 
@@ -16,11 +15,9 @@ const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
     invoice_kiran_arr.push(formData);
 
     // Store the updated array back into localStorage
-    localStorage.setItem("invoice_kiran", JSON.stringify(invoice_kiran_arr));
-
+    // localStorage.setItem("invoice_kiran", JSON.stringify(invoice_kiran_arr));
     // Reset formData
     setFormData({});
-
     // You have not provided the definition of handlePrint(), assuming it's defined elsewhere
     handlePrint();
   };
@@ -73,7 +70,7 @@ const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
+          <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-password"
@@ -89,6 +86,24 @@ const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
               type="text"
               name="address"
               placeholder="Enter Address "
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-last-name"
+            >
+              Bill No.
+            </label>
+            <input
+              required
+              onChange={handleChange}
+              value={formData.billNo}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-last-name"
+              type="number"
+              name="billNo"
+              placeholder="Enter Bill No. "
             />
           </div>
         </div>
