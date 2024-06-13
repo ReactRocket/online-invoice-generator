@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { getDatabase, ref, push } from "firebase/database";
+import { db } from "../firebase/firebase";
 
 const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
-  const handleSubmit = (e) => {
+  const form = useRef();
+  useEffect(() => {
+    form.current.name.focus();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const invoice_kiran_arr_str = localStorage.getItem("invoice_kiran");
     let invoice_kiran_arr = [];
@@ -17,13 +24,25 @@ const AddBillForm = ({ formData, handleChange, handlePrint, setFormData }) => {
     // Store the updated array back into localStorage
     // localStorage.setItem("invoice_kiran", JSON.stringify(invoice_kiran_arr));
     // Reset formData
-    setFormData({});
     // You have not provided the definition of handlePrint(), assuming it's defined elsewhere
-    handlePrint();
+    try {
+      handlePrint();
+
+      const formRefDB = ref(db, "formData");
+      await push(formRefDB, formData);
+
+      // Reset the form
+      form.current.reset();
+      setFormData({});
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+    // form.current.reset();
   };
 
   return (
     <form
+      ref={form}
       onSubmit={handleSubmit}
       className="w-full h-full md:px-10 flex flex-col gap-5 "
     >

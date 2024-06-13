@@ -9,8 +9,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("user")) {
-      setUser(JSON.parse(sessionStorage.getItem("user")));
+    if (localStorage.getItem("user")) {
+      setUser(JSON.parse(localStorage.getItem("user")));
     }
   }, []);
 
@@ -18,7 +18,7 @@ const Login = () => {
   //   const unsubscribe = auth.onAuthStateChanged((user) => {
   //     setUser(user);
   //     if (user) {
-  //       sessionStorage.setItem("user", JSON.stringify(user));
+  //       localStorage.setItem("user", JSON.stringify(user));
   //     }
   //   });
 
@@ -33,7 +33,7 @@ const Login = () => {
 
       if (result.user.email === "agnivesh60@gmail.com") {
         setUser(result.user);
-        sessionStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("user", JSON.stringify(result.user));
           setLoading(false);
       } else {
         alert("Invalid Email!");
@@ -47,11 +47,11 @@ const Login = () => {
   const handleLogout = () => {
     auth.signOut();
     setUser(null);
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("user");
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container relative">
       {loading && <Loader />}
       {user ? (
         <AddBill
