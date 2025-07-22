@@ -31,7 +31,7 @@ const Login = () => {
       const result = await signInWithGoogle();
       console.log(result.user);
 
-      if (result.user.email === "agnivesh60@gmail.com") {
+      if (result.user.email === "agnivesh60@gmail.com" || result.user.email === "vayush798@gmail.com") {
         setUser(result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
           setLoading(false);
